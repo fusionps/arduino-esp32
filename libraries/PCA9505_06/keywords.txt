@@ -1,0 +1,45 @@
+#######################################
+# Syntax Coloring Map for PCA9505/6
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PCA9505_06	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+pinMode	KEYWORD2
+getPinMode	KEYWORD2
+portMode	KEYWORD2
+getPortMode	KEYWORD2
+ioMode	KEYWORD2
+getIoMode	KEYWORD2
+digitalWrite	KEYWORD2
+digitalPortWrite	KEYWORD2
+digitalIOWrite	KEYWORD2
+digitalRead	KEYWORD2
+digitalPortRead	KEYWORD2
+digitalIORead	KEYWORD2
+setPinInterrupt	KEYWORD2
+getPinInterrupt	KEYWORD2
+setPortInterrupt	KEYWORD2
+getPortInterrupt	KEYWORD2
+setIOInterrupt	KEYWORD2
+getIOInterrupt	KEYWORD2
+clearInterrupt	KEYWORD2
+setPinPolarity	KEYWORD2
+getPinPolarity	KEYWORD2
+setPortPolarity	KEYWORD2
+getPortPolarity	KEYWORD2
+setIOPolarity	KEYWORD2
+getIOPolarity	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+IOPORTS	LITERAL1
