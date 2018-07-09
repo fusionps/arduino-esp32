@@ -4,3 +4,13 @@
 [submodule "libraries/AzureIoT"]
 	path = libraries/AzureIoT
 	url = https://github.com/VSChina/ESP32_AzureIoT_Arduino
+[submodule "libraries/Arduino_SNMP"]
+	path = libraries/Arduino_SNMP
+	url = https://github.com/fusionps/Arduino_SNMP.git
+[submodule "libraries/ESP_Configuration"]
+	path = libraries/ESP_Configuration
+	url = https://github.com/fusionps/ESP_Configuration.git
+[submodule "libraries/Ethernet2"]
+	path = libraries/Ethernet2
+	url = https://github.com/0neblock/Ethernet2.git
+	branch = unrelated-stuff
