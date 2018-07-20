@@ -91,17 +91,18 @@ size_t LCDST7032SPI::write(uint8_t data){
 
 void LCDST7032SPI::home(){
     command(_LCD_RETURNHOME_);
-    delay(2);
+    delay(10);
 }
 
 void LCDST7032SPI::clear(){
     command(_LCD_CLEARDISPLAY_);
-    delay(2);
+    delay(10);
 }
 
 void LCDST7032SPI::setCursor(uint8_t col, uint8_t row){
     row = (row == 0)? 0 : 0x40;
     command(_LCD_SETDDRAM_ADDR_ | (row + col));
+    // delay(10);
 }
 
 
