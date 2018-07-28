@@ -14,3 +14,6 @@
 	path = libraries/Ethernet2
 	url = https://github.com/0neblock/Ethernet2.git
 	branch = unrelated-stuff
+[submodule "libraries/Time"]
+	path = libraries/Time
+	url = https://github.com/PaulStoffregen/Time.git
