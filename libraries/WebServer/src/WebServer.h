@@ -147,7 +147,7 @@ protected:
   bool _parseForm(WiFiClient& client, String boundary, uint32_t len);
   bool _parseFormUploadAborted();
   void _uploadWriteByte(uint8_t b);
-  uint8_t _uploadReadByte(WiFiClient& client);
+  int _uploadReadByte(WiFiClient& client);
   void _prepareHeader(String& response, int code, const char* content_type, size_t contentLength);
   bool _collectHeader(const char* headerName, const char* headerValue);
  
@@ -179,6 +179,9 @@ protected:
 
   int              _currentArgCount;
   RequestArgument* _currentArgs;
+  int              _postArgsLen;
+  RequestArgument* _postArgs;
+
   std::unique_ptr<HTTPUpload> _currentUpload;
 
   int              _headerKeysCount;
