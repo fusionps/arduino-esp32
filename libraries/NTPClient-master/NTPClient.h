@@ -61,6 +61,7 @@ class NTPClient {
      */
     bool forceUpdate();
 
+    unsigned long get();
     int getDay();
     int getHours();
     int getMinutes();
