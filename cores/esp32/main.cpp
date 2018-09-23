@@ -4,6 +4,10 @@
 
 #if CONFIG_AUTOSTART_ARDUINO
 
+#ifndef CONFIG_ARDUINO_STACK_SIZE
+#define CONFIG_ARDUINO_STACK_SIZE 16384
+#endif
+
 #if CONFIG_FREERTOS_UNICORE
 #define ARDUINO_RUNNING_CORE 0
 #else
@@ -21,7 +25,7 @@ void loopTask(void *pvParameters)
 extern "C" void app_main()
 {
     initArduino();
-    xTaskCreatePinnedToCore(loopTask, "loopTask", 8192, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+    xTaskCreatePinnedToCore(loopTask, "loopTask", CONFIG_ARDUINO_STACK_SIZE, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
 }
 
 #endif
