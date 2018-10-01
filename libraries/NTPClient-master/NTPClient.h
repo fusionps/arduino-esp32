@@ -67,6 +67,8 @@ class NTPClient {
     bool forceUpdate();
 
     unsigned long get();
+    unsigned long getms();
+
     int getDay();
     int getHours();
     int getMinutes();
@@ -91,7 +93,7 @@ class NTPClient {
     /**
      * @return time in seconds since Jan. 1, 1970
      */
-    unsigned long getEpochTime();
+    unsigned long getEpochTime(bool);
 
     /**
      * Stops the underlying UDP client

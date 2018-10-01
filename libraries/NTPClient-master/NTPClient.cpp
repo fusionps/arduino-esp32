@@ -131,14 +131,18 @@ bool NTPClient::update() {
   return true;
 }
 
-unsigned long NTPClient::getEpochTime() {
+unsigned long NTPClient::getEpochTime(bool mills = false) {
   return this->_timeOffset + // User offset
          this->_currentEpoc + // Epoc returned by the NTP server
-         ((millis() - this->_lastUpdate) / 1000); // Time since last update
+         ((millis() - this->_lastUpdate) / (mills ? 1 : 1000)); // Time since last update
 }
 
 unsigned long NTPClient::get(){
   return this->getEpochTime();
+}
+
+unsigned long NTPClient::getms(){
+  return this->getEpochTime(true);
 }
 
 int NTPClient::getDay() {
