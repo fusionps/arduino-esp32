@@ -17,3 +17,7 @@
 [submodule "libraries/Time"]
 	path = libraries/Time
 	url = https://github.com/PaulStoffregen/Time.git
+[submodule "libraries/ESPMailer"]
+	path = libraries/ESPMailer
+	url = https://github.com/fusionps/ESPMailer.git
+	branch = sensorpod
