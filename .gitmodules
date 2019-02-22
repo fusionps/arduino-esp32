@@ -21,3 +21,7 @@
 	path = libraries/ESPMailer
 	url = https://github.com/fusionps/ESPMailer.git
 	branch = sensorpod
+[submodule "libraries/ArduinoJson"]
+	path = libraries/ArduinoJson
+	url = https://github.com/bblanchon/ArduinoJson.git
+	branch = tags/v5.13.4
