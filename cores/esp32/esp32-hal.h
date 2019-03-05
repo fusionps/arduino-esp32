@@ -57,10 +57,12 @@ void yield(void);
 #include "esp32-hal-spi.h"
 #include "esp32-hal-i2c.h"
 #include "esp32-hal-ledc.h"
+#include "esp32-hal-rmt.h"
 #include "esp32-hal-sigmadelta.h"
 #include "esp32-hal-timer.h"
 #include "esp32-hal-bt.h"
 #include "esp32-hal-psram.h"
+#include "esp32-hal-cpu.h"
 
 #ifndef BOARD_HAS_PSRAM
 #ifdef CONFIG_SPIRAM_SUPPORT
@@ -70,6 +72,21 @@ void yield(void);
 
 //returns chip temperature in Celsius
 float temperatureRead();
+
+#if CONFIG_AUTOSTART_ARDUINO
+//enable/disable WDT for Arduino's setup and loop functions
+void enableLoopWDT();
+void disableLoopWDT();
+#endif
+
+//enable/disable WDT for the IDLE task on Core 0 (SYSTEM)
+void enableCore0WDT();
+void disableCore0WDT();
+#ifndef CONFIG_FREERTOS_UNICORE
+//enable/disable WDT for the IDLE task on Core 1 (Arduino)
+void enableCore1WDT();
+void disableCore1WDT();
+#endif
 
 unsigned long micros();
 unsigned long millis();
