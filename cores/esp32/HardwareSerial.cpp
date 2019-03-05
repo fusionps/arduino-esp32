@@ -34,7 +34,7 @@ void HardwareSerial::begin(unsigned long baud, uint32_t config, int8_t rxPin, in
         rxPin = 16;
         txPin = 17;
     }
-    _uart = uartBegin(_uart_nr, baud, config, rxPin, txPin, 256, invert);
+    _uart = uartBegin(_uart_nr, baud, config, rxPin, txPin, 4098, invert);
 }
 
 void HardwareSerial::end()
