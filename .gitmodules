@@ -13,7 +13,7 @@
 [submodule "libraries/Ethernet2"]
 	path = libraries/Ethernet2
 	url = https://github.com/0neblock/Ethernet2.git
-	branch = unrelated-stuff
+	branch = master
 [submodule "libraries/Time"]
 	path = libraries/Time
 	url = https://github.com/PaulStoffregen/Time.git
@@ -23,5 +23,5 @@
 	branch = sensorpod
 [submodule "libraries/ArduinoJson"]
 	path = libraries/ArduinoJson
-	url = https://github.com/bblanchon/ArduinoJson.git
-	branch = tags/v5.13.4
+	url = https://github.com/fusionps/ArduinoJson.git
+	branch = sensorpod
