@@ -34,7 +34,7 @@ extern "C" void app_main()
 {
     loopTaskWDTEnabled = false;
     initArduino();
-    xTaskCreatePinnedToCore(loopTask, "loopTask", CONFIG_ARDUINO_STACK_SIZE, NULL, 1, &loopTaskHandle, ARDUINO_RUNNING_CORE);
+    xTaskCreatePinnedToCore(loopTask, "loopTask", CONFIG_ARDUINO_STACK_SIZE, NULL, 2, &loopTaskHandle, ARDUINO_RUNNING_CORE);
 }
 
 #endif

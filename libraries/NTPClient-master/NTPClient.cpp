@@ -22,27 +22,27 @@
 #include "NTPClient.h"
 NTPClient::NTPClient(){}
 
-NTPClient::NTPClient(EthernetUDP& udp) {
+NTPClient::NTPClient(WiFiUDP& udp) {
   this->_udp            = &udp;
 }
 
-NTPClient::NTPClient(EthernetUDP& udp, int timeOffset) {
+NTPClient::NTPClient(WiFiUDP& udp, int timeOffset) {
   this->_udp            = &udp;
   this->_timeOffset     = timeOffset;
 }
 
-NTPClient::NTPClient(EthernetUDP& udp, const char* poolServerName) {
+NTPClient::NTPClient(WiFiUDP& udp, const char* poolServerName) {
   this->_udp            = &udp;
   this->_poolServerName = poolServerName;
 }
 
-NTPClient::NTPClient(EthernetUDP& udp, const char* poolServerName, int timeOffset) {
+NTPClient::NTPClient(WiFiUDP& udp, const char* poolServerName, int timeOffset) {
   this->_udp            = &udp;
   this->_timeOffset     = timeOffset;
   this->_poolServerName = poolServerName;
 }
 
-NTPClient::NTPClient(EthernetUDP& udp, const char* poolServerName, int timeOffset, int updateInterval) {
+NTPClient::NTPClient(WiFiUDP& udp, const char* poolServerName, int timeOffset, int updateInterval) {
   this->_udp            = &udp;
   this->_timeOffset     = timeOffset;
   this->_poolServerName = poolServerName;
@@ -53,12 +53,12 @@ void NTPClient::begin() {
   this->begin(this->_udp, NTP_DEFAULT_LOCAL_PORT);
 }
 
-void NTPClient::begin(EthernetUDP* udp) {
+void NTPClient::begin(WiFiUDP* udp) {
   this->_udp = udp;
   this->begin(udp, NTP_DEFAULT_LOCAL_PORT);
 }
 
-void NTPClient::begin(EthernetUDP* udp, int port) {
+void NTPClient::begin(WiFiUDP* udp, int port) {
   this->_port = port;
   this->_udp = udp;
   this->_udp->begin(this->_port);

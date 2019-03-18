@@ -66,7 +66,7 @@ void LCDST7032SPI::init(){
 
 void LCDST7032SPI::command(uint8_t data){
 //    Serial.println("startCommand");
-    SPI.beginTransaction(SPISettings(5000000, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
     digitalWrite(_cs, LOW);
     digitalWrite(_rs, LOW);
     delayMicroseconds(10);
@@ -78,7 +78,7 @@ void LCDST7032SPI::command(uint8_t data){
 }
 
 size_t LCDST7032SPI::write(uint8_t data){
-    SPI.beginTransaction(SPISettings(5000000, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
     digitalWrite(_cs, LOW);
     digitalWrite(_rs, HIGH);
     delayMicroseconds(10);

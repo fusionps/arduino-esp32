@@ -24,6 +24,7 @@
 
 #include "WiFi.h"
 #include "WiFiGeneric.h"
+#include "ETH.h"
 
 extern "C" {
 #include <stdint.h>
@@ -45,6 +46,7 @@ extern "C" {
 
 } //extern "C"
 
+#define TAG "eth"
 #include "esp32-hal-log.h"
 #include <vector>
 
@@ -404,24 +406,18 @@ esp_err_t WiFiGenericClass::_eventCallback(void *arg, system_event_t *event)
 
     } else if(event->event_id == SYSTEM_EVENT_ETH_START) {
         setStatusBits(ETH_STARTED_BIT);
+        ETH.eventStart();
     } else if(event->event_id == SYSTEM_EVENT_ETH_STOP) {
         clearStatusBits(ETH_STARTED_BIT | ETH_CONNECTED_BIT | ETH_HAS_IP_BIT | ETH_HAS_IP6_BIT);
     } else if(event->event_id == SYSTEM_EVENT_ETH_CONNECTED) {
         setStatusBits(ETH_CONNECTED_BIT);
+         ETH.eventConnected();
     } else if(event->event_id == SYSTEM_EVENT_ETH_DISCONNECTED) {
         clearStatusBits(ETH_CONNECTED_BIT | ETH_HAS_IP_BIT | ETH_HAS_IP6_BIT);
+         ETH.eventDisconnected();
     } else if(event->event_id == SYSTEM_EVENT_ETH_GOT_IP) {
-#if ARDUHAL_LOG_LEVEL >= ARDUHAL_LOG_LEVEL_DEBUG
-        uint8_t * ip = (uint8_t *)&(event->event_info.got_ip.ip_info.ip.addr);
-        uint8_t * mask = (uint8_t *)&(event->event_info.got_ip.ip_info.netmask.addr);
-        uint8_t * gw = (uint8_t *)&(event->event_info.got_ip.ip_info.gw.addr);
-        log_d("ETH IP: %u.%u.%u.%u, MASK: %u.%u.%u.%u, GW: %u.%u.%u.%u",
-            ip[0], ip[1], ip[2], ip[3],
-            mask[0], mask[1], mask[2], mask[3],
-            gw[0], gw[1], gw[2], gw[3]);
-#endif
         setStatusBits(ETH_CONNECTED_BIT | ETH_HAS_IP_BIT);
-
+        ETH.eventIP();
     } else if(event->event_id == SYSTEM_EVENT_GOT_IP6) {
         if(event->event_info.got_ip6.if_index == TCPIP_ADAPTER_IF_AP){
             setStatusBits(AP_HAS_IP6_BIT);

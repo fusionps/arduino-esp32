@@ -2,7 +2,7 @@
 
 #include "Arduino.h"
 
-#include <EthernetUdp2.h>
+#include <ETH.h>
 
 #define SEVENZYYEARS 2208988800UL
 #define NTP_PACKET_SIZE 48
@@ -12,7 +12,7 @@
 
 class NTPClient {
   private:
-    EthernetUDP*          _udp = 0;
+    WiFiUDP*          _udp = 0;
     bool          _udpSetup       = false;
 
     const char*   _poolServerName = "time.nist.gov"; // Default time server
@@ -33,23 +33,23 @@ class NTPClient {
 
   public:
     NTPClient();
-    NTPClient(EthernetUDP& udp);
-    NTPClient(EthernetUDP& udp, int timeOffset);
-    NTPClient(EthernetUDP& udp, const char* poolServerName);
-    NTPClient(EthernetUDP& udp, const char* poolServerName, int timeOffset);
-    NTPClient(EthernetUDP& udp, const char* poolServerName, int timeOffset, int updateInterval);
+    NTPClient(WiFiUDP& udp);
+    NTPClient(WiFiUDP& udp, int timeOffset);
+    NTPClient(WiFiUDP& udp, const char* poolServerName);
+    NTPClient(WiFiUDP& udp, const char* poolServerName, int timeOffset);
+    NTPClient(WiFiUDP& udp, const char* poolServerName, int timeOffset, int updateInterval);
 
     /**
      * Starts the underlying UDP client with the default local port
      */
     void begin();
 
-    void begin(EthernetUDP* udp);
+    void begin(WiFiUDP* udp);
 
     /**
      * Starts the underlying UDP client with the specified local port
      */
-    void begin(EthernetUDP* udp, int port);
+    void begin(WiFiUDP* udp, int port);
 
     /**
      * This should be called in the main loop of your application. By default an update from the NTP Server is only

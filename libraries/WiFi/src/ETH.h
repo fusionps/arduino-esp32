@@ -22,48 +22,24 @@
 #define _ETH_H_
 
 #include "WiFi.h"
-#include "esp_eth.h"
+#include "w5500.h"
 
-#ifndef ETH_PHY_ADDR
-#define ETH_PHY_ADDR 0
-#endif
-
-#ifndef ETH_PHY_TYPE
-#define ETH_PHY_TYPE ETH_PHY_LAN8720
-#endif
-
-#ifndef ETH_PHY_POWER
-#define ETH_PHY_POWER -1
-#endif
-
-#ifndef ETH_PHY_MDC
-#define ETH_PHY_MDC 23
-#endif
-
-#ifndef ETH_PHY_MDIO
-#define ETH_PHY_MDIO 18
-#endif
-
-#ifndef ETH_CLK_MODE
-#define ETH_CLK_MODE ETH_CLOCK_GPIO0_IN
-#endif
-
-typedef enum { ETH_PHY_LAN8720, ETH_PHY_TLK110, ETH_PHY_MAX } eth_phy_type_t;
 
 class ETHClass {
     private:
         bool initialized;
         bool started;
         bool staticIP;
-        eth_config_t eth_config;
+        
     public:
         ETHClass();
         ~ETHClass();
 
-        bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
+        bool begin(int timeout = 30000);
 
-        bool config(IPAddress local_ip, IPAddress gateway, IPAddress subnet, IPAddress dns1 = (uint32_t)0x00000000, IPAddress dns2 = (uint32_t)0x00000000);
+        bool begin(IPAddress local_ip, IPAddress gateway, IPAddress subnet, IPAddress dns1 = (uint32_t)0x00000000);
 
+        void end();
         const char * getHostname();
         bool setHostname(const char * hostname);
 
@@ -81,6 +57,16 @@ class ETHClass {
 
         uint8_t * macAddress(uint8_t* mac);
         String macAddress();
+
+        bool networkChanged = false;
+
+        void eventStart();
+        void eventIP();
+        void eventConnected();
+        void eventDisconnected();
+        void eventStop();
+
+        bool _gotIP = false;
 
         friend class WiFiClient;
         friend class WiFiServer;
